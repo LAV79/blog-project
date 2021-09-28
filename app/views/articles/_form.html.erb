@@ -1,0 +1,21 @@
+<%= form_with model: article do |form| %>
+  <div>
+    <%= form.label "Заголовок" %><br>
+    <%= form.text_area :title, size: "70x2" %>
+    <% article.errors.full_messages_for(:title).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+  <br>
+  <div>
+    <%= form.label "Содержание" %><br>
+    <%= form.text_area :body, size: "70x5" %><br>
+    <% article.errors.full_messages_for(:body).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+  <br>
+  <div>
+    <%= form.submit "Готово"%>
+  </div>
+<% end %>
