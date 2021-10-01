@@ -10,3 +10,31 @@
                   data: { confirm: "Удалить статью?" } %></li>  
   <li><%= link_to "Вернуться на главную", articles_path %></li>
 </ul>
+
+<h2>Список комментариев</h2>
+<% @article.comments.each do |comment| %>
+  <p>
+    <strong>Имя:</strong>
+    <%= comment.commenter %>
+  </p>
+
+  <p>
+    <strong>Комментарий:</strong>
+    <%= comment.body %>
+  </p>
+<% end %>
+
+<h2>Добавить комментарий:</h2>
+<%= form_with model: [ @article, @article.comments.build ] do |form| %>
+  <p>
+    <%= form.label "Имя" %><br>
+    <%= form.text_field :commenter %>
+  </p>
+  <p>
+    <%= form.label "Комментарий" %><br>
+    <%= form.text_area :body %>
+  </p>
+  <p>
+    <%= form.submit "Добавить"%>
+  </p>
+<% end %>
