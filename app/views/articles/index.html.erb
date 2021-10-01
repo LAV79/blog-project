@@ -1,18 +1,22 @@
-<h1>Статьи</h1>
+<h1>Блог моих статей</h1>
 <p>Приложение в фреймворке Ruby on Rails by Alexey Lobzov</p>
 <hr>
+В этом блоге <%= Article.public_count %> статей со статусом Public!
+<br>
 <h2>Сохраненные статьи:</h2>
 <ul>
   <% @articles.each do |article| %>
-    <li>
-    	<!--вместо этого <a href="/articles/<%= article.id %>"> 
-    		<%= article.title %> </a> -->
-    		<p><b>
-    		<%= link_to article.title, article %> 
-    		</b></p>
-    	
-   		<p><i><%= article.body %> </i></p>
-    </li>
+    <% unless article.archived? %>
+      <li>
+      	<!--вместо этого <a href="/articles/<%= article.id %>"> 
+      		<%= article.title %> </a> -->
+      		<p><b>
+      		<%= link_to article.title, article %> 
+      		</b></p>
+      	
+     		<p><i><%= article.body %> </i></p>
+      </li>
+    <% end %>
   <% end %>
 </ul>
 

@@ -2,7 +2,6 @@
 
 <p><%= @article.body %></p>
 
-
 <ul>
   <li><%= link_to "Редактивровать", edit_article_path(@article) %></li>
   <li><%= link_to "Удалить", article_path(@article),
@@ -10,8 +9,9 @@
                   data: { confirm: "Удалить статью?" } %></li>  
   <li><%= link_to "Вернуться на главную", articles_path %></li>
 </ul>
-
+<hr>
 <h2>Список комментариев</h2>
+<!-- Вместо этого куска
 <% @article.comments.each do |comment| %>
   <p>
     <strong>Имя:</strong>
@@ -23,8 +23,12 @@
     <%= comment.body %>
   </p>
 <% end %>
-
+-->
+<!-- Добавим более изящное -->
+<%= render @article.comments %>
+<hr>
 <h2>Добавить комментарий:</h2>
+<!-- Так же меняем на более изящный код
 <%= form_with model: [ @article, @article.comments.build ] do |form| %>
   <p>
     <%= form.label "Имя" %><br>
@@ -38,3 +42,5 @@
     <%= form.submit "Добавить"%>
   </p>
 <% end %>
+-->
+<%= render 'comments/form' %>
